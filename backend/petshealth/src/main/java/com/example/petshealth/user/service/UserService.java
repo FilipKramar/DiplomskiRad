@@ -30,10 +30,8 @@ public class UserService {
 
 
 
-    public List<User> registerUsers(List<UserRegistrationDto> request) {
-        List<User> registerUsers = new ArrayList<>();
+    public User registerUsers(UserRegistrationDto registrationDTO) {
 
-        for (UserRegistrationDto registrationDTO : request) {
             User user = User.builder()
                 .password(registrationDTO.getPassword())
                 .name(registrationDTO.getName())
@@ -44,9 +42,8 @@ public class UserService {
 
             userRepository.save(user);
             System.out.println(user);
-            registerUsers.add(user);
-        }
-        return registerUsers;
+            return user;
+
 
     }
 

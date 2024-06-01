@@ -23,4 +23,17 @@ export class ApirequestService {
       }
     );
   }
+  registerUser(data: any) {
+    const url = `${apiUrl.key}users/register`;
+    this.http.post<void>(url, data).subscribe(
+      () => {
+        alert('User created sucessfully');
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        alert('Cant register');
+      }
+    );
+  }
+
 }

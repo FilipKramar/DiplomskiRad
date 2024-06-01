@@ -1,1 +1,53 @@
-<p>register works!</p>
+<div class="content" fxLayout="column" fxLayoutAlign="space-around center">
+    <h4>Welcome to <span>PetsHealth</span></h4>
+  
+    <form [formGroup]="registerFormGroup" fxLayout="column" fxLayoutAlign="space-around center">
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">First Name:</div>
+        </div>
+        <input placeholder="First Name" type="text" [formControlName]="'name'" />
+      </div>
+  
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">Last Name:</div>
+        </div>
+        <input placeholder="Last Name" type="text" [formControlName]="'surname'" />
+      </div>
+  
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">Email:</div>
+        </div>
+        <input placeholder="Email" type="text" [formControlName]="'email'" />
+      </div>
+
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">Oib:</div>
+        </div>
+        <input placeholder="Oib" type="text" [formControlName]="'oib'" />
+      </div>
+  
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">Password:</div>
+        </div>
+        <input placeholder="Password" type="password" [formControlName]="'password'" />
+      </div>
+  
+      <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+        <div fxLayoutAlign="space-around start">
+          <div fxLayoutAlign="center center">Confirm Password:</div>
+        </div>
+        <input placeholder="Confirm Password" type="password" />
+      </div>
+  
+      <button fxLayout="column" fxLayoutAlign="center center" (click)="collectFormData()">Register Account</button>
+  
+      <div class="register">
+        <a mat-button routerLink="/login">Already have an account?</a>
+      </div>
+    </form>
+  </div>

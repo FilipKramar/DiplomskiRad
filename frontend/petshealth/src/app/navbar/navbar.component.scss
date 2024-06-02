@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  z-index: 1000;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0; 
+  z-index: 0;
+}
+
+.mat-drawer{
+  background-color: aqua;
+  color:white;
+  
+}
+
+:host ::ng-deep .mdc-list-item__primary-text, .mdc-list-item:hover {
+  color: #ffff !important;
+  background-color: aqua;
+  font-size: larger;
+}
+
+.mdc-list-item:focus{
+
+    color: red;
+
+}

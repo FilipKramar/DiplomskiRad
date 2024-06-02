@@ -6,9 +6,8 @@ import com.example.petshealth.user.model.User;
 import com.example.petshealth.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.example.petshealth.pet.model.Pet;
 
-import java.io.Console;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +46,13 @@ public class UserService {
 
     }
 
+    public List<Pet> listUsersPets(Long id) {
+
+        if(userRepository.findById(id).isPresent()){
+            return userRepository.findById(id).get().getPets();
+        }
+        return null;
+    }
 }
 
 

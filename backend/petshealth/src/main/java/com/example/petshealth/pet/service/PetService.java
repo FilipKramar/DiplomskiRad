@@ -32,4 +32,9 @@ public class PetService {
         }
         return null;
     }
+
+    public Pet getPetDetails(Long id) {
+
+        return petRepository.findById(id).get();
+    }
 }

@@ -20,4 +20,9 @@ public class PetController {
 
         return ResponseEntity.ok(petService.createAPetChart(petCreationDTO));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Pet> getPetDetails(@PathVariable Long id){
+
+        return ResponseEntity.ok(petService.getPetDetails(id));
+    }
 }

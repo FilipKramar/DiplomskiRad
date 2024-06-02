@@ -1,5 +1,6 @@
 package com.example.petshealth.user.controller;
 
+import com.example.petshealth.pet.model.Pet;
 import com.example.petshealth.user.dto.UserLoginDto;
 import com.example.petshealth.user.dto.UserRegistrationDto;
 import com.example.petshealth.user.model.User;
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<User> registerUsers(@RequestBody UserRegistrationDto request){
         return ResponseEntity.ok(userService.registerUsers(request));
+
+    }
+    @GetMapping("/pets/{id}")
+    public ResponseEntity<List<Pet>> listUsersPets(@PathVariable Long id){
+        return ResponseEntity.ok(userService.listUsersPets(id));
 
     }
 }

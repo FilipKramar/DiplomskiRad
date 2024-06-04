@@ -5,6 +5,6 @@ CREATE TABLE pets (
     breed VARCHAR(20) NOT NULL,
     microchipNumber VARCHAR(20),
     user_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 

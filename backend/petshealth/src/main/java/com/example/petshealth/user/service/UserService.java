@@ -6,9 +6,7 @@ import com.example.petshealth.user.model.User;
 import com.example.petshealth.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.io.Console;
-import java.util.ArrayList;
+import com.example.petshealth.pet.model.Pet;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +28,9 @@ public class UserService {
 
 
 
-    public List<User> registerUsers(List<UserRegistrationDto> request) {
-        List<User> registerUsers = new ArrayList<>();
 
-        for (UserRegistrationDto registrationDTO : request) {
+    public User registerUsers(UserRegistrationDto registrationDTO) {
+      
             User user = User.builder()
                 .password(registrationDTO.getPassword())
                 .name(registrationDTO.getName())
@@ -44,10 +41,17 @@ public class UserService {
 
             userRepository.save(user);
             System.out.println(user);
-            registerUsers.add(user);
-        }
-        return registerUsers;
 
+            return user;
+
+    }
+
+    public List<Pet> listUsersPets(Long id) {
+
+        if(userRepository.findById(id).isPresent()){
+            return userRepository.findById(id).get().getPets();
+        }
+        return null;
     }
 
 }

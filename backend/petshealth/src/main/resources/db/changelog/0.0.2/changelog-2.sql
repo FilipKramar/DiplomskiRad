@@ -1,0 +1,10 @@
+CREATE TABLE pets (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    species VARCHAR(20) NOT NULL,
+    breed VARCHAR(20) NOT NULL,
+    microchipNumber VARCHAR(20),
+    user_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

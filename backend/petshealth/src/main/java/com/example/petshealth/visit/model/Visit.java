@@ -4,6 +4,9 @@ import com.example.petshealth.pet.model.Pet;
 import com.example.petshealth.prescriptions.model.Prescriptions;
 import com.example.petshealth.therapies.model.Therapies;
 import com.example.petshealth.veterinarian.model.Veterinarian;
+import com.example.petshealth.visitprescription.model.VisitPrescription;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +15,6 @@ import java.time.LocalDate;
 import java.util.List;
 @Entity
 @Table(name = "visit")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,19 +28,17 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name = "veterinarian_id", nullable = false)
+    @JsonManagedReference
     private Veterinarian veterinarian;
 
     @ManyToOne
     @JoinColumn(name = "pet_id", nullable = false)
+    @JsonManagedReference
     private Pet pet;
 
-    @ManyToMany
-    @JoinTable(
-            name = "visit_prescription",
-            joinColumns = @JoinColumn(name = "visit_id"),
-            inverseJoinColumns = @JoinColumn(name = "prescription_id")
-    )
-    private List<Prescriptions> prescriptions;
+    @OneToMany(mappedBy = "visit")
+    @JsonBackReference
+    private List<VisitPrescription> visitPrescriptions;
 
     @ManyToMany
     @JoinTable(
@@ -46,6 +46,7 @@ public class Visit {
             joinColumns = @JoinColumn(name = "visit_id"),
             inverseJoinColumns = @JoinColumn(name = "therapy_id")
     )
+    @JsonManagedReference
     private List<Therapies> therapies;
 
     private LocalDate visitDate;

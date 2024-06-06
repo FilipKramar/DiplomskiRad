@@ -1,6 +1,8 @@
 package com.example.petshealth.prescriptions.model;
 
 import com.example.petshealth.visit.model.Visit;
+import com.example.petshealth.visitprescription.model.VisitPrescription;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "prescriptions")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,6 +27,7 @@ public class Prescriptions {
     private String instructions;
     private LocalDate expirationdate;
 
-    @ManyToMany(mappedBy = "prescriptions")
-    private List<Visit> visits;
+    @OneToMany(mappedBy = "prescriptions")
+    @JsonBackReference
+    private List<VisitPrescription> visitPrescriptions;
 }

@@ -1,6 +1,7 @@
 package com.example.petshealth.user.model;
 
 import com.example.petshealth.pet.model.Pet;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import
 jakarta.persistence.*;
@@ -12,7 +13,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -37,6 +37,6 @@ public class User {
     private String oib;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Pet> pets;
 }

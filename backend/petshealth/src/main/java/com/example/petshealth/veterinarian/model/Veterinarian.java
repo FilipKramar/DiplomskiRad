@@ -1,6 +1,7 @@
 package com.example.petshealth.veterinarian.model;
 
 import com.example.petshealth.visit.model.Visit;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "veterinarian")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,6 +34,7 @@ public class Veterinarian {
     private Integer yearsofexperience;
 
     @OneToMany(mappedBy = "veterinarian")
+    @JsonBackReference
     private List<Visit> visits;
 
 }

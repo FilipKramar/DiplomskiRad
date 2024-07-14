@@ -1,5 +1,8 @@
 package com.example.petshealth.therapies.model;
 import com.example.petshealth.visit.model.Visit;
+import com.example.petshealth.visitprescription.model.VisitPrescription;
+import com.example.petshealth.visittherapy.model.VisitTherapy;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -23,6 +26,8 @@ public class Therapies {
     private BigDecimal price;
     private String materials;
 
-    @ManyToMany(mappedBy = "therapies")
-    private List<Visit> visits;
+    @OneToMany(mappedBy = "therapies")
+    @JsonBackReference
+    private List<VisitTherapy> visits;
+
 }

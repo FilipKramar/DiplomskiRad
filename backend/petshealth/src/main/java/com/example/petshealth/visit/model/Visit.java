@@ -5,6 +5,7 @@ import com.example.petshealth.prescriptions.model.Prescriptions;
 import com.example.petshealth.therapies.model.Therapies;
 import com.example.petshealth.veterinarian.model.Veterinarian;
 import com.example.petshealth.visitprescription.model.VisitPrescription;
+import com.example.petshealth.visittherapy.model.VisitTherapy;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -40,14 +41,9 @@ public class Visit {
     @JsonBackReference
     private List<VisitPrescription> visitPrescriptions;
 
-    @ManyToMany
-    @JoinTable(
-            name = "visit_therapy",
-            joinColumns = @JoinColumn(name = "visit_id"),
-            inverseJoinColumns = @JoinColumn(name = "therapy_id")
-    )
-    @JsonManagedReference
-    private List<Therapies> therapies;
+    @OneToMany(mappedBy = "visit")
+    @JsonBackReference
+    private List<VisitTherapy> visitTherapies;
 
     private LocalDate visitDate;
 

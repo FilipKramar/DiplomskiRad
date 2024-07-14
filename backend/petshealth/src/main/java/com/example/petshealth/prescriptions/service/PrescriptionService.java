@@ -38,7 +38,6 @@ public class PrescriptionService {
                         prescriptions.add(visitPrescription.getPrescriptions());
                     }
                 }
-
                 return prescriptions;
             } else {
                 return Collections.emptyList();

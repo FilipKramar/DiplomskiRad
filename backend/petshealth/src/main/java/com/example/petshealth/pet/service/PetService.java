@@ -14,6 +14,7 @@ public class PetService {
 
     private final PetRepository petRepository;
     private final UserRepository userRepository;
+
     public Pet createAPetChart(PetCreationDTO petCreationDTO) {
         if (userRepository.findById(petCreationDTO.getUserId()).isPresent()) {
             User user= userRepository.findById(petCreationDTO.getUserId()).get();

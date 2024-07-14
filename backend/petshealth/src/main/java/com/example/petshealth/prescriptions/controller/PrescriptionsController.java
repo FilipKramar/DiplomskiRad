@@ -22,7 +22,6 @@ public class PrescriptionsController {
     @GetMapping("/{id}")
     public ResponseEntity<List<Prescriptions>> listUsersPets(@PathVariable Long id){
         return ResponseEntity.ok(prescriptionService.listPetsPrescriptions(id));
-
     }
-   
+
 }

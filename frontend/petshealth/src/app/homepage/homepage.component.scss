@@ -1,0 +1,46 @@
+$background: white;
+
+$third-color: rgb(106, 8, 211);
+$colortext: rgb(82, 60, 106);
+$fontsize-no-active: 16px;
+$fontsize-active: 19px;
+
+$primary-color: rgba(82, 60, 106, 0.7);
+$secondary-color: rgb(195, 195, 195);
+
+.parent-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px; 
+  padding: 13px;
+  background: $background;
+}
+
+app-navbar {
+  flex: 0 0 auto; 
+}
+
+.grid-container {
+  flex: 1;
+  height: fit-content;
+  width: auto;
+  overflow: auto;
+  display: grid;
+  gap: 15px;
+  padding: 13px;
+}
+
+@media (max-width: 768px) {
+  .parent-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+mat-grid-tile {
+  background: lightblue;
+}

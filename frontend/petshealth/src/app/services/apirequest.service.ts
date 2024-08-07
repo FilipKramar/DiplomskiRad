@@ -15,7 +15,7 @@ export class ApirequestService {
     const url = `${apiUrl.key}users`;
     this.http.post<number>(url, data).subscribe(
       (Id: number) => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/dashboard']);
         sessionStorage.setItem('userid', Id.toString());
       },
       (error) => {

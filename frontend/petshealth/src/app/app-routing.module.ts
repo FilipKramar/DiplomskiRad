@@ -6,8 +6,9 @@ import { RegisterComponent } from './register/register.component';
 
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SelectpageComponent } from './selectpage/selectpage.component';
+import { SelectpetComponent } from './selectpet/selectpet.component';
 import { RegisterpetComponent } from './registerpet/registerpet.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 export const routes: Routes = [
   {
@@ -23,15 +24,21 @@ export const routes: Routes = [
     path: 'home',
     component: MainpageComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,
         children: [
-          { path: '', component: SelectpageComponent },
+          { path: '', component: SelectpetComponent },
           { path: 'register', component: RegisterpetComponent },
         ],
       },
+      {
+        path: '',
+        component: HomepageComponent,
+        children: [
+          { path: 'register', component: RegisterpetComponent },
+        ],
+      }
       ],
       }
     ];

@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { SelectpageComponent } from './selectpage/selectpage.component';
+import { SelectpetComponent } from './selectpet/selectpet.component';
 import { RegisterpetComponent } from './registerpet/registerpet.component';
 import { MatTableModule } from '@angular/material/table';
 import { TherapiesComponent } from './therapies/therapies.component';
@@ -28,6 +28,7 @@ import { TherapiesdetailComponent } from './therapiesdetail/therapiesdetail.comp
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { PrescriptiondetailsComponent } from './prescriptiondetails/prescriptiondetails.component';
 import { VisitsComponent } from './visits/visits.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,14 @@ import { VisitsComponent } from './visits/visits.component';
     MainpageComponent,
     HeaderComponent,
     NavbarComponent,
-    SelectpageComponent,
+    SelectpetComponent,
     RegisterpetComponent,
     TherapiesComponent,
     TherapiesdetailComponent,
     PrescriptionsComponent,
     PrescriptiondetailsComponent,
     VisitsComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,

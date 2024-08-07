@@ -35,5 +35,24 @@ export class ApirequestService {
       }
     );
   }
+  getUsersPets() {
+    const userId = sessionStorage.getItem('userid');
+    const url = `${apiUrl.key}users/pets/${userId}`;
+    return this.http.get<void>(url);
+  }
+
+  registerAPet(data: any) {
+    const url = `${apiUrl.key}pets`;
+    this.http.post<void>(url, data).subscribe(
+      () => {
+        alert('Pet created sucessfully');
+        this.router.navigate(['/home/dashboard/']);
+      },
+      (error) => {
+        alert('Cant create pet');
+      }
+    );
+  }
+
 
 }

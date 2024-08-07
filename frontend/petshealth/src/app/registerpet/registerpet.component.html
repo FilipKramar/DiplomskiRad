@@ -1,0 +1,99 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <mat-card>
+      <mat-card-title fxLayoutAlign="center center">
+        <h4><span>Register a Pet</span></h4>
+      </mat-card-title>
+      <mat-card-content fxLayout="column" fxLayoutAlign="space-around center">
+        <form
+          [formGroup]="createPetFormGroup"
+          fxLayout="column"
+          fxLayoutAlign="space-between stretch"
+          (ngSubmit)="collectFormData()"
+        >
+          <div
+            class="floating-label"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <div>Species:</div>
+            <input
+              placeholder="Species"
+              type="text"
+              formControlName="species"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+            />
+          </div>
+  
+          <div
+            class="floating-label"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <div>Breed:</div>
+            <input
+              placeholder="Breed"
+              type="text"
+              formControlName="breed"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+            />
+          </div>
+  
+          <div
+            class="floating-label"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <div>Name:</div>
+            <input
+              placeholder="Name"
+              type="text"
+              formControlName="name"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+            />
+          </div>
+  
+          <div
+            class="floating-label"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <div>Microchip Number:</div>
+            <input
+              placeholder="Microchip Number"
+              type="text"
+              formControlName="microchipNumber"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+            />
+          </div>
+  
+          <div
+            class="floating-label"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <div>User ID:</div>
+            <input
+              type="number"
+              formControlName="userId"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+            />
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-card-actions>
+              <button mat-button type="submit">Register Pet</button>
+            </mat-card-actions>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+
+
+<a [routerLink]="['/home/dashboard/']">Pet already registered?</a>

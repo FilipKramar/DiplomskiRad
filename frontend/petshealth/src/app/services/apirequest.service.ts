@@ -53,6 +53,17 @@ export class ApirequestService {
       }
     );
   }
+  getPetsPrescriptions(){
+    const petId = sessionStorage.getItem('petId');
+    const url = `${apiUrl.key}prescriptions/${petId}`;
+    return this.http.get<void>(url);
+  }
+
+  getPetsTherapies(){
+    const petId = sessionStorage.getItem('petId');
+    const url = `${apiUrl.key}therapies/${petId}`;
+    return this.http.get<void>(url);
+  }
 
 
 }

@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SelectpetComponent } from './selectpet/selectpet.component';
 import { RegisterpetComponent } from './registerpet/registerpet.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
+import { TherapiesComponent } from './therapies/therapies.component';
 
 export const routes: Routes = [
   {
@@ -36,7 +38,8 @@ export const routes: Routes = [
         path: '',
         component: HomepageComponent,
         children: [
-          { path: 'register', component: RegisterpetComponent },
+          { path: 'prescription', component: PrescriptionsComponent },
+          { path: 'therapies', component: TherapiesComponent }
         ],
       }
       ],

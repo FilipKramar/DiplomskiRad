@@ -1,7 +1,11 @@
 <div class="parent-container">
     <app-navbar></app-navbar>
     <div class="grid-container">
-      <p>homepage works!</p>
+      <router-outlet></router-outlet>
+      <ng-container *ngIf="showMessage">
+        <p>Please select one of the options in the nav bar</p>
+      </ng-container>
+      
     </div>
   </div>
   

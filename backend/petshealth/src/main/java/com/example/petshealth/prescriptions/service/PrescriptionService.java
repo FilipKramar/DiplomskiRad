@@ -4,6 +4,7 @@ import com.example.petshealth.pet.model.Pet;
 import com.example.petshealth.pet.repository.PetRepository;
 import com.example.petshealth.prescriptions.model.Prescriptions;
 import com.example.petshealth.prescriptions.repository.PrescriptionRepository;
+import com.example.petshealth.therapies.model.Therapies;
 import com.example.petshealth.visit.model.Visit;
 import com.example.petshealth.visit.repository.VisitRepository;
 import com.example.petshealth.visitprescription.model.VisitPrescription;
@@ -45,4 +46,13 @@ public class PrescriptionService {
         }
         return Collections.emptyList();
     }
+
+    public Prescriptions getPetsPrescription(Long id, Long prescriptionid) {
+        List<Prescriptions> prescriptionList= listPetsPrescriptions(id);
+        return prescriptionList.stream()
+                .filter(therapy -> therapy.getId().equals(prescriptionid))
+                .findFirst()
+                .orElse(null);
+    }
 }
+

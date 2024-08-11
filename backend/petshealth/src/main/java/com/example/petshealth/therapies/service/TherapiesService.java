@@ -49,4 +49,11 @@ public class TherapiesService {
         return Collections.emptyList();
     }
 
+    public Therapies getPetsTherapy(Long id, Long therapiesid) {
+        List<Therapies> therapiesList= listPetsTherapies(id);
+        return therapiesList.stream()
+                .filter(therapy -> therapy.getId().equals(therapiesid))
+                .findFirst()
+                .orElse(null);
+    }
 }

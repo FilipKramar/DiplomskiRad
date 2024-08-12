@@ -4,6 +4,8 @@ import com.example.petshealth.pet.model.Pet;
 import com.example.petshealth.pet.repository.PetRepository;
 import com.example.petshealth.prescriptions.model.Prescriptions;
 import com.example.petshealth.therapies.model.Therapies;
+import com.example.petshealth.veterinarian.model.Veterinarian;
+import com.example.petshealth.veterinarian.repository.VeterinarianRepository;
 import com.example.petshealth.visit.dto.VisitDetailsDto;
 import com.example.petshealth.visit.model.Visit;
 import com.example.petshealth.visit.repository.VisitRepository;
@@ -29,6 +31,8 @@ public class VisitService {
     private  final VisitTherapyRepository visitTherapyRepository;
 
     private final VisitPrescriptionsRepository visitPrescriptionsRepository;
+
+    private final VeterinarianRepository veterinarianRepository;
     public List<Visit> listPetsVisits(Long id) {
 
         Optional<Pet> pet= petRepository.findById(id);
@@ -67,9 +71,13 @@ public class VisitService {
         return visitDetailsDto;
 
 
+    }
 
+    public List<Visit> listVetsAppointments(Long id) {
 
+        Veterinarian vet= veterinarianRepository.findById(id).get();
 
+        return visitRepository.findByVeterinarian(vet);
 
     }
 }

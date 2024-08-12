@@ -1,10 +1,10 @@
 package com.example.petshealth.veterinarian.controller;
 
+import com.example.petshealth.veterinarian.dto.VeterinarianLoginDto;
 import com.example.petshealth.veterinarian.service.VeterinarianService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/vet")
@@ -13,4 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class VeterinarianController {
 
     private final VeterinarianService veterinarianService;
+
+    @PostMapping()
+    public ResponseEntity<Long> authorizeAnUser(@RequestBody VeterinarianLoginDto veterinarianLoginDto){
+
+        return ResponseEntity.ok(veterinarianService.authorizeAnUser(veterinarianLoginDto));
+    }
 }

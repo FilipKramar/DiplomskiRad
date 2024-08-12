@@ -30,4 +30,9 @@ public class VisitController {
         return ResponseEntity.ok(visitService.getPetsVisit(id,visitId));
     }
 
+    @GetMapping("vet/{vetid}")
+    public ResponseEntity<List<Visit>> listVetsAppointments(@PathVariable Long vetid){
+        return ResponseEntity.ok(visitService.listVetsAppointments(vetid));
+    }
+
 }

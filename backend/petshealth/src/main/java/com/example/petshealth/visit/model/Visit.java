@@ -45,6 +45,7 @@ public class Visit {
     @JsonBackReference
     private List<VisitTherapy> visitTherapies;
 
+    @JoinColumn(name = "visit_date", nullable = false)
     private LocalDate visitDate;
 
     private String reason;

@@ -3,10 +3,15 @@ package com.example.petshealth.visit.service;
 import com.example.petshealth.pet.model.Pet;
 import com.example.petshealth.pet.repository.PetRepository;
 import com.example.petshealth.prescriptions.model.Prescriptions;
+import com.example.petshealth.prescriptions.repository.PrescriptionRepository;
 import com.example.petshealth.therapies.model.Therapies;
+import com.example.petshealth.therapies.repository.TherapiesRepository;
+import com.example.petshealth.user.model.User;
 import com.example.petshealth.veterinarian.model.Veterinarian;
 import com.example.petshealth.veterinarian.repository.VeterinarianRepository;
+import com.example.petshealth.visit.dto.VisitDetailsAdditionDto;
 import com.example.petshealth.visit.dto.VisitDetailsDto;
+import com.example.petshealth.visit.dto.VisitScheduleDto;
 import com.example.petshealth.visit.model.Visit;
 import com.example.petshealth.visit.repository.VisitRepository;
 import com.example.petshealth.visitprescription.model.VisitPrescription;
@@ -15,7 +20,10 @@ import com.example.petshealth.visittherapy.model.VisitTherapy;
 import com.example.petshealth.visittherapy.repository.VisitTherapyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,6 +41,10 @@ public class VisitService {
     private final VisitPrescriptionsRepository visitPrescriptionsRepository;
 
     private final VeterinarianRepository veterinarianRepository;
+
+    private final PrescriptionRepository prescriptionRepository;
+
+    private final TherapiesRepository therapiesRepository;
     public List<Visit> listPetsVisits(Long id) {
 
         Optional<Pet> pet= petRepository.findById(id);
@@ -46,7 +58,7 @@ public class VisitService {
         List<Visit> visits= listPetsVisits(id);
 
         Visit visit= visits.stream()
-                .filter(therapy -> therapy.getId().equals(visitId))
+                .filter(fetchedVisitId -> fetchedVisitId.getId().equals(visitId))
                 .findFirst()
                 .orElse(null);
 
@@ -79,5 +91,48 @@ public class VisitService {
 
         return visitRepository.findByVeterinarian(vet);
 
+    }
+
+    public Visit scheduleAVisit(VisitScheduleDto visitScheduleDto) {
+
+        Visit visit = Visit.builder()
+                .veterinarian(veterinarianRepository.findById(visitScheduleDto.getVetId()).get())
+                .pet(petRepository.findById(visitScheduleDto.getPetId()).get())
+                .visitDate(LocalDate.now())
+                .build();
+
+        visitRepository.save(visit);
+        return visit;
+    }
+    @Transactional
+    public VisitDetailsDto addVisitDetails(Long id, Long visitId , VisitDetailsAdditionDto visitDetailsAdditionDto) {
+
+        List<Visit> visits= listPetsVisits(id);
+
+        Visit visit= visits.stream()
+                .filter(fetchedVisitId -> fetchedVisitId.getId().equals(visitId))
+                .findFirst()
+                .orElse(null);
+
+        List<Prescriptions> fetchedPrescriptionList= prescriptionRepository.findAllById(visitDetailsAdditionDto.getPrescriptionId());
+
+        fetchedPrescriptionList.forEach(prescription -> {
+           VisitPrescription visitPrescription= new VisitPrescription( visitRepository.findById(visitId).get(), prescription);
+           visitPrescriptionsRepository.save(visitPrescription);
+           visit.getVisitPrescriptions().add(visitPrescription);
+        });
+
+        List<Therapies> fetchedTherapiesList= therapiesRepository.findAllById(visitDetailsAdditionDto.getTherapyId());
+
+        fetchedTherapiesList.forEach(therapy -> {
+            VisitTherapy visitTherapy= new VisitTherapy( visitRepository.findById(visitId).get(), therapy);
+            visitTherapyRepository.save(visitTherapy);
+            visit.getVisitTherapies().add(visitTherapy);
+        });
+
+
+        visitRepository.save(visit);
+
+        return getPetsVisit(id,visitId);
     }
 }

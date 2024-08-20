@@ -12,7 +12,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 @Entity
 @Table(name = "visit")
@@ -47,6 +49,9 @@ public class Visit {
 
     @JoinColumn(name = "visit_date", nullable = false)
     private LocalDate visitDate;
+
+    @JoinColumn(name = "visit_time", nullable = false)
+    private LocalTime visitTime;
 
     private String reason;
 

@@ -6,13 +6,15 @@
   >
   <mat-nav-list class="nav">
     <a mat-list-item routerLink="/home/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+<a *ngIf="isUser" mat-list-item routerLink="/home/appointment" routerLinkActive="active">
+  Schedule an appointment
+</a>
     <a mat-list-item routerLink="/home/therapies" routerLinkActive="active">Therapies</a>
     <a mat-list-item routerLink="/home/prescription" routerLinkActive="active">Prescription</a>
+    <a mat-list-item routerLink="/home/visit" routerLinkActive="active">Visits</a>
   </mat-nav-list>
   
     
   </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
+
 </mat-sidenav-container>

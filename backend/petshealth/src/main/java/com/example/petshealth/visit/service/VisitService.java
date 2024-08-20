@@ -22,9 +22,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -53,37 +57,41 @@ public class VisitService {
 
     }
 
-    public VisitDetailsDto getPetsVisit(long id, Long visitId)
-    {
-        List<Visit> visits= listPetsVisits(id);
+    public VisitDetailsDto getPetsVisit(long id, Long visitId) {
+        List<Visit> visits = listPetsVisits(id);
 
-        Visit visit= visits.stream()
+        Visit visit = visits.stream()
                 .filter(fetchedVisitId -> fetchedVisitId.getId().equals(visitId))
                 .findFirst()
                 .orElse(null);
 
-        List<VisitTherapy> visitTherapyList= visitTherapyRepository.findByVisit(visit);
+        if (visit == null) {
+            throw new NoSuchElementException("Visit not found");
+        }
+
+        List<VisitTherapy> visitTherapyList = visitTherapyRepository.findByVisit(visit);
         List<Therapies> therapyList = visitTherapyList.stream()
                 .map(VisitTherapy::getTherapies)
                 .collect(Collectors.toList());
 
-        List<VisitPrescription> visitPrescriptionsList= visitPrescriptionsRepository.findByVisit(visit);
+        BigDecimal totalTherapyPrice = therapyList.stream()
+                .map(Therapies::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
+        List<VisitPrescription> visitPrescriptionsList = visitPrescriptionsRepository.findByVisit(visit);
         List<Prescriptions> prescriptionList = visitPrescriptionsList.stream()
                 .map(VisitPrescription::getPrescriptions)
                 .collect(Collectors.toList());
 
+        visit.setMaxPrice(totalTherapyPrice);
         VisitDetailsDto visitDetailsDto = new VisitDetailsDto();
-
         visitDetailsDto.setVisit(visit);
         visitDetailsDto.setTherapies(therapyList);
         visitDetailsDto.setPrescriptions(prescriptionList);
 
-
         return visitDetailsDto;
-
-
     }
+
 
     public List<Visit> listVetsAppointments(Long id) {
 
@@ -98,7 +106,8 @@ public class VisitService {
         Visit visit = Visit.builder()
                 .veterinarian(veterinarianRepository.findById(visitScheduleDto.getVetId()).get())
                 .pet(petRepository.findById(visitScheduleDto.getPetId()).get())
-                .visitDate(LocalDate.now())
+                .visitDate(visitScheduleDto.getVisitDate())
+                .visitTime(visitScheduleDto.getVisitTime())
                 .build();
 
         visitRepository.save(visit);

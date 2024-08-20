@@ -11,6 +11,12 @@ import { RegisterpetComponent } from './registerpet/registerpet.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { TherapiesComponent } from './therapies/therapies.component';
+import { VisitComponent } from './visit/visit.component';
+import { PrescriptiondetailsComponent } from './prescriptiondetails/prescriptiondetails.component';
+import { TherapiesdetailComponent } from './therapiesdetail/therapiesdetail.component';
+import { VisitdetailComponent } from './visitdetail/visitdetail.component';
+import { VetloginComponent } from './vetlogin/vetlogin.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +26,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'vet', component: VetloginComponent },
     ]
   },
   {
@@ -39,7 +46,13 @@ export const routes: Routes = [
         component: HomepageComponent,
         children: [
           { path: 'prescription', component: PrescriptionsComponent },
-          { path: 'therapies', component: TherapiesComponent }
+          { path: 'therapies', component: TherapiesComponent },
+          { path: 'visit', component: VisitComponent },
+          { path: 'prescriptiondetails', component: PrescriptiondetailsComponent },
+          { path: 'therapiesdetails', component: TherapiesdetailComponent },
+          { path: 'visitdetails', component: VisitdetailComponent },
+          { path: 'appointment', component: AppointmentComponent }        
+        
         ],
       }
       ],

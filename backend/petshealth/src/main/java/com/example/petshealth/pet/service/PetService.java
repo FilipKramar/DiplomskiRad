@@ -8,6 +8,8 @@ import com.example.petshealth.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PetService {
@@ -37,5 +39,9 @@ public class PetService {
     public Pet getPetDetails(Long id) {
 
         return petRepository.findById(id).get();
+    }
+
+    public List<Pet> getAllPets() {
+        return petRepository.findAll();
     }
 }

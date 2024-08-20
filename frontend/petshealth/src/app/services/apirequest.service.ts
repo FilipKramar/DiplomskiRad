@@ -16,10 +16,24 @@ export class ApirequestService {
     this.http.post<number>(url, data).subscribe(
       (Id: number) => {
         this.router.navigate(['/home/dashboard']);
+        sessionStorage.setItem('isUser', 'true');
         sessionStorage.setItem('userid', Id.toString());
       },
       (error) => {
         alert('Wrong email or password');
+      }
+    );
+  }
+  loginVet(data: any) {
+    const url = `${apiUrl.key}vet`;
+    this.http.post<number>(url, data).subscribe(
+      (Id: number) => {
+        this.router.navigate(['/home/']);
+        sessionStorage.setItem('isUser', 'false');
+        sessionStorage.setItem('vetid', Id.toString());
+      },
+      (error) => {
+        alert('Wrong email or password or not a vet');
       }
     );
   }
@@ -56,7 +70,13 @@ export class ApirequestService {
   getPetsPrescriptions(){
     const petId = sessionStorage.getItem('petId');
     const url = `${apiUrl.key}prescriptions/${petId}`;
-    return this.http.get<void>(url);
+    return this.http.get<any>(url);
+  }
+
+  getPet(){
+    const petId = sessionStorage.getItem('petId');
+    const url = `${apiUrl.key}pets/${petId}`;
+    return this.http.get<any>(url);
   }
 
   getPetsTherapies(){
@@ -65,5 +85,27 @@ export class ApirequestService {
     return this.http.get<void>(url);
   }
 
+  getPetsVisits(){
+    const petId = sessionStorage.getItem('petId');
+    const url = `${apiUrl.key}visit/${petId}`;
+    return this.http.get<void>(url);
+  }
+  getVets() {
+    const url = `${apiUrl.key}vet`;
+    return this.http.get<any>(url);
+  }
+
+  scheduleAnVisit(data: any) {
+    const url = `${apiUrl.key}visit`;
+    this.http.post<void>(url, data).subscribe(
+      () => {
+        alert('Visit scheduled sucessfully');
+        this.router.navigate(['/home/']);
+      },
+      (error) => {
+        alert('Cant create an appointment');
+      }
+    );
+  }
 
 }

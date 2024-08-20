@@ -28,5 +28,4 @@ public class VisitDetailsDto {
 
     private List<Therapies> therapies;
 
-
 }

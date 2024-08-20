@@ -24,7 +24,7 @@ export class TherapiesComponent {
 
   navigatetoTherapyDetails(therapyId: number): void {
     sessionStorage.setItem('therapyId', therapyId.toString());
-    this.router.navigate(['/home/']);
+    this.router.navigate(['/home/therapiesdetails']);
   }
 
 }

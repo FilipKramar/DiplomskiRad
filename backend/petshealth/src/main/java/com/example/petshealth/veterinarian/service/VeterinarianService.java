@@ -8,6 +8,7 @@ import com.example.petshealth.veterinarian.repository.VeterinarianRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,7 +17,7 @@ public class VeterinarianService {
 
     private final VeterinarianRepository veterinarianRepository;
 
-    public Long authorizeAnUser(VeterinarianLoginDto veterinarianLoginDto) {
+    public Long authorizeAnVet(VeterinarianLoginDto veterinarianLoginDto) {
 
         Optional<Veterinarian> fetchedUser = veterinarianRepository.findByEmail(veterinarianLoginDto.getEmail());
 
@@ -24,5 +25,9 @@ public class VeterinarianService {
             throw new RuntimeException("Vet with the username: " + veterinarianLoginDto.getEmail() + "does not exist");
         }
         return fetchedUser.get().getId();
+    }
+
+    public List<Veterinarian> getAllVets() {
+        return veterinarianRepository.findAll();
     }
 }

@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/pets")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -19,6 +21,11 @@ public class PetController {
     public ResponseEntity<Pet> createAPetChart(@RequestBody PetCreationDTO petCreationDTO){
 
         return ResponseEntity.ok(petService.createAPetChart(petCreationDTO));
+    }
+    @GetMapping()
+    public ResponseEntity<List<Pet>> getAllPets(){
+
+        return ResponseEntity.ok(petService.getAllPets());
     }
     @GetMapping("/{id}")
     public ResponseEntity<Pet> getPetDetails(@PathVariable Long id){

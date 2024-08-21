@@ -1,7 +1,5 @@
 <div class="grid-item item">
-    <div class="task">
-      <p>ALL VISITS</p>
-    </div>
+  <h2 class="heading">All Pets' Visits</h2>
     <table mat-table [dataSource]="visits" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -30,4 +28,3 @@
     </table>
 </div>
 
-<a [routerLink]="['/home/visitdetails']">Register your visit</a>

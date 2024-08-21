@@ -1,7 +1,5 @@
 <div class="grid-item item">
-    <div class="task">
-      <p>ALL THERAPIES</p>
-    </div>
+  <h2 class="heading">All Pets' Therapies</h2>
     <table mat-table [dataSource]="therapies" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -24,6 +22,5 @@
       </tr>
     </table>
   </div>
-  
-  <a [routerLink]="['/home/therapiesdetails']">Register your therapy</a>
+
   

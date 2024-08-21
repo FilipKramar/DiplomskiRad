@@ -94,6 +94,24 @@ export class ApirequestService {
     const url = `${apiUrl.key}vet`;
     return this.http.get<any>(url);
   }
+  getVisitDetails() {
+    const petId = sessionStorage.getItem('petId');
+    const visitId = sessionStorage.getItem('visitId');
+    const url = `${apiUrl.key}visit/${petId}/${visitId}`;
+    return this.http.get<any>(url);
+  }
+  getPrescriptionDetails() {
+    const petId = sessionStorage.getItem('petId');
+    const prescriptionId = sessionStorage.getItem('prescriptionId');
+    const url = `${apiUrl.key}prescriptions/${petId}/${prescriptionId}`;
+    return this.http.get<any>(url);
+  }
+  getTherapiesDetails() {
+    const petId = sessionStorage.getItem('petId');
+    const therapyId = sessionStorage.getItem('therapyId');
+    const url = `${apiUrl.key}therapies/${petId}/${therapyId}`;
+    return this.http.get<any>(url);
+  }
 
   scheduleAnVisit(data: any) {
     const url = `${apiUrl.key}visit`;

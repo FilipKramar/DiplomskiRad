@@ -1,11 +1,9 @@
 <div class="parent-container">
-    <app-navbar></app-navbar>
-    <div class="grid-container">
-      <router-outlet></router-outlet>
-      <ng-container *ngIf="showMessage">
-        <p>Please select one of the options in the nav bar</p>
-      </ng-container>
-      
-    </div>
+  <app-navbar></app-navbar>
+  <div class="grid-container">
+    <router-outlet></router-outlet>
+    <ng-container *ngIf="showMessage">
+      <p class="center-message">Please select one of the options in the nav bar</p>
+    </ng-container>
   </div>
-  
+</div>

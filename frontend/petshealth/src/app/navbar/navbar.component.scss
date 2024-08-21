@@ -1,4 +1,3 @@
-
 .sidenav-container {
   height: 100%;
 }
@@ -9,22 +8,23 @@
   top: 64px;
   left: 0;
   z-index: 1000;
+  background-color: palegoldenrod;
+  color: #4A4A4A;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0; 
   z-index: 0;
+  color: #4A4A4A;
 }
 
-.mat-drawer{
-  background-color:palegoldenrod;
-  color:white;
-  
+.mat-drawer {
+  background-color: palegoldenrod;
+  color: #4A4A4A;
 }
 
 :host ::ng-deep .mdc-list-item__primary-text, .mdc-list-item:hover {
-  color: #ffff !important;
+  color: #4A4A4A !important;
   font-size: larger;
 }
-

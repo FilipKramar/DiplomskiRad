@@ -1,4 +1,5 @@
-<mat-sidenav-container class="sidenav-container" >
+<mat-sidenav-container class="sidenav-container"
+color="primary" >
   <mat-sidenav  #drawer class="sidenav"
   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
   [mode]="(isHandset$ | async) ? (isNavOpen ? 'side' : 'over') : (isNavOpen ? 'side' : 'side')"
@@ -9,9 +10,10 @@
 <a *ngIf="isUser" mat-list-item routerLink="/home/appointment" routerLinkActive="active">
   Schedule an appointment
 </a>
+    <a mat-list-item routerLink="/home/visit" routerLinkActive="active">Visits</a>
     <a mat-list-item routerLink="/home/therapies" routerLinkActive="active">Therapies</a>
     <a mat-list-item routerLink="/home/prescription" routerLinkActive="active">Prescription</a>
-    <a mat-list-item routerLink="/home/visit" routerLinkActive="active">Visits</a>
+    
   </mat-nav-list>
   
     

@@ -1,0 +1,20 @@
+<mat-card fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start stretch">
+    <mat-card-header>
+      <mat-card-title>Therapy Details</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content fxLayout="column" fxLayoutGap="20px">
+      <ng-container *ngIf="therapy; else noTherapy">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <p><strong>Description:</strong> {{ therapy.description }}</p>
+          <p><strong>Type:</strong> {{ therapy.type }}</p>
+          <p><strong>Materials:</strong> {{ therapy.materials }}</p>
+          <p><strong>Price:</strong> ${{ therapy.price | number:'1.2-2' }}</p> <!-- Format the price to 2 decimal places -->
+        </div>
+      </ng-container>
+      <ng-template #noTherapy>
+        <p>No therapy details available.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+  

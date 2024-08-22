@@ -1,0 +1,26 @@
+<div class="grid-item item">
+  <h2 class="heading">All Pets' Therapies</h2>
+    <table mat-table [dataSource]="therapies" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let therapy">{{ therapy.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let therapy">{{ therapy.description }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let therapy">{{ therapy.price | currency }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['id', 'description', 'price']"></tr>
+      <tr mat-row *matRowDef="let therapy; columns: ['id', 'description', 'price']" 
+          (click)="navigatetoTherapyDetails(therapy.id)">
+      </tr>
+    </table>
+  </div>
+
+  

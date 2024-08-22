@@ -28,8 +28,8 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<User> registerUsers(@RequestBody UserRegistrationDto request){
         return ResponseEntity.ok(userService.registerUsers(request));
-
     }
+
     @GetMapping("/pets/{id}")
     public ResponseEntity<List<Pet>> listUsersPets(@PathVariable Long id){
         return ResponseEntity.ok(userService.listUsersPets(id));

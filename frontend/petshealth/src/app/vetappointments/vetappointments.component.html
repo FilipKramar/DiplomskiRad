@@ -1,0 +1,31 @@
+<div class="grid-item item" fxLayout="column" fxLayoutAlign="center center">
+    <h2 class="heading">All Pets' Visits</h2>
+  
+    <table mat-table [dataSource]="visits" class="mat-elevation-z8">
+      <ng-container matColumnDef="petName">
+        <th mat-header-cell *matHeaderCellDef>Pet Name</th>
+        <td mat-cell *matCellDef="let visit">{{ visit.pet.name }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="visitDate">
+        <th mat-header-cell *matHeaderCellDef>Visit Date</th>
+        <td mat-cell *matCellDef="let visit">{{ visit.visitDate }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="visitTime">
+        <th mat-header-cell *matHeaderCellDef>Visit Time</th>
+        <td mat-cell *matCellDef="let visit">{{ visit.visitTime }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="vetName">
+        <th mat-header-cell *matHeaderCellDef>Veterinarian</th>
+        <td mat-cell *matCellDef="let visit">{{ visit.veterinarian.name }} {{ visit.veterinarian.surname }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['petName', 'visitDate', 'visitTime', 'vetName']"></tr>
+      <tr mat-row *matRowDef="let visit; columns: ['petName', 'visitDate', 'visitTime', 'vetName']"
+          (click)="navigateToVisitDetails(visit.id,visit.pet.id)">
+      </tr>
+    </table>
+  </div>
+  

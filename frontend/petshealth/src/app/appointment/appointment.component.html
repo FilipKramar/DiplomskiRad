@@ -1,0 +1,49 @@
+<div class="content" fxLayout="column" fxLayoutAlign="space-around center">
+    <h1>Schedule an Appointment</h1>
+    <form [formGroup]="appointmentFormGroup" fxLayout="column" fxLayoutAlign="space-around center">
+        
+        <!-- Veterinarian Selection -->
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Veterinarian</mat-label>
+                <mat-select formControlName="vetId">
+                    <mat-option *ngFor="let vet of veterinarians" [value]="vet.id">
+                        {{ vet.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Pet</mat-label>
+                <mat-select formControlName="petId">
+                    <mat-option *ngIf="singlePet" [value]="singlePet.id">
+                        {{ singlePet.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <!-- Visit Date -->
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Visit Date</mat-label>
+                <input matInput [formControlName]="'visitDate'" type="date" />
+            </mat-form-field>
+        </div>
+        
+        <!-- Visit Time -->
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Visit Time</mat-label>
+                <input matInput [formControlName]="'visitTime'" type="time" />
+            </mat-form-field>
+        </div>
+        
+        <!-- Submit Button -->
+        <button fxLayout="column" fxLayoutAlign="center center" mat-raised-button color="primary" (click)="submitAppointment()">
+            Schedule Appointment
+        </button>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="content" fxLayout="column" fxLayoutAlign="space-around center">
+    <h1>Add Appointment Details</h1>
+    <form [formGroup]="appointmentDetailsFormGroup" fxLayout="column" fxLayoutAlign="space-around center">
+
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+              <mat-label>Pet</mat-label>
+              <input matInput [value]="singlePet?.name" readonly />
+            </mat-form-field>
+          </div>
+        
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Select Therapies</mat-label>
+                <mat-select formControlName="therapyId" multiple>
+                    <mat-option *ngFor="let therapy of therapies" [value]="therapy.id">
+                        {{ therapy.description }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="floating-label" fxLayoutAlign="space-between start" fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Select Prescriptions</mat-label>
+                <mat-select formControlName="prescriptionId" multiple>
+                    <mat-option *ngFor="let prescription of prescriptions" [value]="prescription.id">
+                        {{ prescription.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <button fxLayout="column" fxLayoutAlign="center center" mat-raised-button color="primary" (click)="submitAppointmentDetails()">
+            Add Appointment Details
+        </button>
+    </form>
+</div>

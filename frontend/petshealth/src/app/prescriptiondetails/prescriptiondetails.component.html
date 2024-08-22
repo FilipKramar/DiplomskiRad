@@ -1,0 +1,15 @@
+<mat-card fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start stretch">
+    <mat-card-header>
+      <mat-card-title>Prescription Details</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <p><strong>Name:</strong> {{ prescription.name }}</p>
+        <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+        <p><strong>Instructions:</strong> {{ prescription.instructions }}</p>
+        <p><strong>Expiration Date:</strong> {{ prescription.expirationdate }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

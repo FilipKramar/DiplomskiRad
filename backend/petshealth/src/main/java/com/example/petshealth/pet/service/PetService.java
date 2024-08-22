@@ -8,12 +8,15 @@ import com.example.petshealth.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PetService {
 
     private final PetRepository petRepository;
     private final UserRepository userRepository;
+
     public Pet createAPetChart(PetCreationDTO petCreationDTO) {
         if (userRepository.findById(petCreationDTO.getUserId()).isPresent()) {
             User user= userRepository.findById(petCreationDTO.getUserId()).get();
@@ -36,5 +39,9 @@ public class PetService {
     public Pet getPetDetails(Long id) {
 
         return petRepository.findById(id).get();
+    }
+
+    public List<Pet> getAllPets() {
+        return petRepository.findAll();
     }
 }

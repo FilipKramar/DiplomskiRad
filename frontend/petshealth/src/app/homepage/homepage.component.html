@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="paw-print">
+  <i class="fa fa-paw"></i>
+</div>
+<div class="parent-container">
+  <app-navbar></app-navbar>
+  <div class="grid-container">
+   
+    <router-outlet></router-outlet>
+    <ng-container *ngIf="showMessage">
+      <p class="center-message">Please select one of the options in the nav bar</p>
+    </ng-container>
+  </div>
+</div>
+
+
+

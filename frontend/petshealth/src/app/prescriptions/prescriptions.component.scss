@@ -1,0 +1,59 @@
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #3f51b5;
+}
+.grid-item {
+  position: relative;
+  z-index: 2;
+}
+
+.item {
+  height: fit-content;
+  width: auto;
+  overflow: auto;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #dcdcdc;
+  text-align: center;
+
+  p, u {
+    background-color: #f0e68c;
+    color: #000000;
+    margin: 0 3%;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  table {
+    height: auto;
+    width: 100%;
+    background-color: #f0e68c;
+    border-collapse: collapse;
+
+    th {
+      font-size: large;
+      color: #ffffff;
+      background-color: #3f51b5;
+      text-align: center;
+    }
+
+    tr {
+      background-color: #f0e68c;
+      color: #000000;
+    }
+
+    td {
+      font-size: 17px;
+      border-bottom: 1px solid #dcdcdc;
+      text-align: center;
+    }
+
+    tr:hover {
+      background-color: #ffd700;
+      color: #000000;
+    }
+  }
+}

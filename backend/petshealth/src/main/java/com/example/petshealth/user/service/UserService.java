@@ -43,7 +43,6 @@ public class UserService {
             System.out.println(user);
             return user;
 
-
     }
 
     public List<Pet> listUsersPets(Long id) {

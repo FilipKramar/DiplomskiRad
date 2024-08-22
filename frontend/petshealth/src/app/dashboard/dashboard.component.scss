@@ -1,0 +1,40 @@
+$background: white;
+
+.grid-container {
+  position: inherit;
+  left: 180px;
+  top: 80px;
+  right: 0px;
+  bottom: 0px;
+  height: fit-content;
+  width: auto;
+  overflow: auto;
+  display: grid;
+  gap: 15px;
+  padding: 13px;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; 
+    left: 0; 
+    top: 0;  
+  }
+}
+
+mat-grid-tile {
+  background: lightblue;
+}
+
+.paw-print i {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  font-size: 60vw;
+  color: lightgray;
+  opacity: 0.5;
+  z-index: -5;
+}
+

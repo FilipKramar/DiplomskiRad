@@ -36,15 +36,27 @@ CREATE TABLE visit (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     veterinarian_id BIGINT NOT NULL,
     pet_id BIGINT NOT NULL,
-    prescriptions_id BIGINT,
-    therapies_id BIGINT,
     visit_date DATE NOT NULL,
     reason VARCHAR(100),
     max_price DECIMAL(10, 2),
     FOREIGN KEY (veterinarian_id) REFERENCES veterinarian(id),
-    FOREIGN KEY (pet_id) REFERENCES pets(id),
-    FOREIGN KEY (prescriptions_id) REFERENCES prescriptions(id),
-    FOREIGN KEY (therapies_id) REFERENCES therapies(id)
+    FOREIGN KEY (pet_id) REFERENCES pets(id)
+);
+
+CREATE TABLE visit_prescription (
+    visit_id BIGINT NOT NULL,
+    prescription_id BIGINT NOT NULL,
+    PRIMARY KEY (visit_id, prescription_id),
+    FOREIGN KEY (visit_id) REFERENCES visit(id),
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+CREATE TABLE visit_therapy (
+    visit_id BIGINT NOT NULL,
+    therapy_id BIGINT NOT NULL,
+    PRIMARY KEY (visit_id, therapy_id),
+    FOREIGN KEY (visit_id) REFERENCES visit(id),
+    FOREIGN KEY (therapy_id) REFERENCES therapies(id)
 );
 
 INSERT INTO pets (name, species, breed, microchipNumber, user_id)
@@ -63,8 +75,17 @@ VALUES
 ('Physical Therapy for injured leg', 'Rehabilitation', 50.00, 'Exercise equipment, bandages'),
 ('Behavioral Therapy for anxiety', 'Training', 40.00, 'Toys, treats');
 
-INSERT INTO visit (veterinarian_id, pet_id, prescriptions_id, therapies_id, visit_date, reason, max_price)
+INSERT INTO visit (veterinarian_id, pet_id, visit_date, reason, max_price)
 VALUES
-(1, 1, 1, NULL, '2024-06-01', 'Annual check-up and vaccination', 35.00),
-(2, 2, NULL, 1, '2024-06-02', 'Physical therapy session for injured leg', 50.00),
-(3, 3, 2, NULL, '2024-06-03', 'Follow-up visit for medication adjustment', 40.00);
+(1, 1, '2024-06-01', 'Annual check-up and vaccination', 35.00),
+(2, 2, '2024-06-02', 'Physical therapy session for injured leg', 50.00),
+(3, 3, '2024-06-03', 'Follow-up visit for medication adjustment', 40.00);
+
+INSERT INTO visit_prescription (visit_id, prescription_id)
+VALUES
+(1, 1),
+(3, 2);
+
+INSERT INTO visit_therapy (visit_id, therapy_id)
+VALUES
+(2, 1);

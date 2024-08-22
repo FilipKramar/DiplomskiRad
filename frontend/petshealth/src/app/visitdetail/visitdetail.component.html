@@ -1,0 +1,75 @@
+<mat-card fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start stretch">
+    <mat-card-header>
+      <mat-card-title>Visit Receipt</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content fxLayout="column" fxLayoutGap="20px">
+  
+      <!-- Veterinarian Details -->
+      <div fxLayout="column" fxLayoutGap="10px">
+        <h3>Veterinarian Details</h3>
+        <p><strong>Name:</strong> {{ visit.veterinarian.name }} {{ visit.veterinarian.surname }}</p>
+        <p><strong>Clinic:</strong> {{ visit.veterinarian.veterinaryclinic }}</p>
+      </div>
+  
+      <!-- Pet Details -->
+      <div fxLayout="column" fxLayoutGap="10px">
+        <h3>Pet Details</h3>
+        <p><strong>Species:</strong> {{ visit.pet.species }}</p>
+        <p><strong>Breed:</strong> {{ visit.pet.breed }}</p>
+        <p><strong>Name:</strong> {{ visit.pet.name }}</p>
+        <p><strong>Owner:</strong> {{ visit.pet.user.name }} {{ visit.pet.user.surname }}</p>
+      </div>
+  
+      <!-- Visit Details -->
+      <div fxLayout="column" fxLayoutGap="10px">
+        <h3>Visit Details</h3>
+        <p><strong>Date:</strong> {{ visit.visitDate }}</p>
+        <p><strong>Time:</strong> {{ visit.visitTime }}</p>
+        <p><strong>Reason:</strong> {{ visit.reason }}</p>
+      </div>
+  
+      <!-- Prescriptions -->
+      <div fxLayout="column" fxLayoutGap="10px">
+        <h3>Prescriptions</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let prescription of prescriptions" fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="50px">
+              <p><strong>Name:</strong> {{ prescription.name }}</p>
+              <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+              <p><strong>Instructions:</strong> {{ prescription.instructions }}</p>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+  
+      <!-- Therapies -->
+      <div fxLayout="column">
+        <h3>Therapies</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let therapy of therapies" fxLayout="column" >
+            <div fxLayout="row" fxLayoutGap="50px">
+              <p><strong>Description:</strong> {{ therapy.description }}</p>
+              <p><strong>Type:</strong> {{ therapy.type }}</p>
+              <p><strong>Materials:</strong> {{ therapy.materials }}</p>
+              <p><strong>Price:</strong> ${{ therapy.price }}</p>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+  
+      <!-- Total Maximum Price -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Total Maximum Price</h3>
+        <p><strong>$ {{ visit.maxPrice }}</strong></p>
+      </div>
+  
+      <button *ngIf="!isUser" mat-button routerLink="/home/appointmentdetails" routerLinkActive="active" class="button">
+        Add Visit Details
+      </button>
+      
+      
+    </mat-card-content>
+  </mat-card>
+  
+  

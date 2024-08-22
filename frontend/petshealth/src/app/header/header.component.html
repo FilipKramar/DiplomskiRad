@@ -1,0 +1,31 @@
+<mat-toolbar
+  fxLayout="row"
+  fxLayout.xs="row"
+  fxLayoutAlign="space-between center"
+  class="fixed-toolbar"
+  color="primary"
+>
+  <div fxLayout="row">
+    <div class="menu">
+    <button
+      *ngIf="isHandset$ | async"
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="toggleNav()"
+    >
+    <mat-icon>Menu</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <div class="name">PetsHealth</div>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="isUser" mat-menu-item (click)="navigateToSelectPet()">Back to Select Pet</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+  
+  <button mat-button [matMenuTriggerFor]="menu"><h2>Menu</h2></button>
+  
+</mat-toolbar>
+

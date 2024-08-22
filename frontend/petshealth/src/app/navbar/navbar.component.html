@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenav-container"
+color="primary" >
+  <mat-sidenav  #drawer class="sidenav"
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? (isNavOpen ? 'side' : 'over') : (isNavOpen ? 'side' : 'side')"
+  [opened]="(isHandset$ | async) ? isNavOpen : true" 
+  >
+  <mat-nav-list class="nav">
+    <a mat-list-item routerLink="/home/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+<a *ngIf="isUser" mat-list-item routerLink="/home/appointment" routerLinkActive="active">
+  Schedule an appointment
+</a>
+<a *ngIf="!isUser" mat-list-item routerLink="/home/vetappointment" routerLinkActive="active">
+  Appointments
+</a>
+<a *ngIf="isUser" mat-list-item routerLink="/home/visit" routerLinkActive="active">Visits</a>
+    <a  *ngIf="isUser" mat-list-item routerLink="/home/visit" routerLinkActive="active">Visits</a>
+    <a *ngIf="isUser" mat-list-item routerLink="/home/therapies" routerLinkActive="active">Therapies</a>
+    <a  *ngIf="isUser" mat-list-item routerLink="/home/prescription" routerLinkActive="active">Prescription</a>
+    
+  </mat-nav-list>
+  
+    
+  </mat-sidenav>
+
+</mat-sidenav-container>

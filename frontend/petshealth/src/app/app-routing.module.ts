@@ -17,6 +17,8 @@ import { TherapiesdetailComponent } from './therapiesdetail/therapiesdetail.comp
 import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { VetloginComponent } from './vetlogin/vetlogin.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { VetappointmentsComponent } from './vetappointments/vetappointments.component';
+import { AppointmentdetailsComponent } from './appointmentdetails/appointmentdetails.component';
 
 export const routes: Routes = [
   {
@@ -51,7 +53,9 @@ export const routes: Routes = [
           { path: 'prescriptiondetails', component: PrescriptiondetailsComponent },
           { path: 'therapiesdetails', component: TherapiesdetailComponent },
           { path: 'visitdetails', component: VisitdetailComponent },
-          { path: 'appointment', component: AppointmentComponent }        
+          { path: 'appointment', component: AppointmentComponent },
+          { path: 'vetappointment', component: VetappointmentsComponent },
+          { path: 'appointmentdetails', component: AppointmentdetailsComponent }        
         
         ],
       }

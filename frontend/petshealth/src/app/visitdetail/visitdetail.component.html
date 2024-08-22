@@ -64,6 +64,12 @@
         <p><strong>$ {{ visit.maxPrice }}</strong></p>
       </div>
   
+      <button *ngIf="!isUser" mat-button routerLink="/home/appointmentdetails" routerLinkActive="active" class="button">
+        Add Visit Details
+      </button>
+      
+      
     </mat-card-content>
   </mat-card>
+  
   

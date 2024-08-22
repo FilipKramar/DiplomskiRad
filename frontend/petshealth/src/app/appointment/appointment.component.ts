@@ -10,7 +10,7 @@ import { ApirequestService } from '../services/apirequest.service';
 export class AppointmentComponent implements OnInit {
   appointmentFormGroup: FormGroup;
   veterinarians: any[] = [];
-  singlePet: any; // Single pet object
+  singlePet: any; 
 
   constructor(
     private fb: FormBuilder,

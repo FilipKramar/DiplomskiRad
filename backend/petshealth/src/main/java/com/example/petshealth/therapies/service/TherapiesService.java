@@ -56,4 +56,9 @@ public class TherapiesService {
                 .findFirst()
                 .orElse(null);
     }
+
+    public List<Therapies> getAllTherapies() {
+
+        return therapiesRepository.findAll();
+    }
 }

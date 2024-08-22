@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   isHandset$: Observable<boolean>;
   isNavOpen: boolean = false;
-  username = sessionStorage.getItem('username');
-
+  isUser: boolean = false; 
   constructor(
     private navbarService: NavbarService,  private router: Router  ) {
     this.isHandset$ = this.navbarService.isHandset$;
@@ -22,7 +21,6 @@ export class HeaderComponent {
   }
   logout() {
     sessionStorage.removeItem('userid');
-    sessionStorage.removeItem('username');
     this.router.navigate(['']);
   }
   navigateToSelectPet() {
@@ -30,4 +28,7 @@ export class HeaderComponent {
     this.router.navigate(['/home/dashboard']);
 
   }
+  ngOnInit() {
+    const userType = sessionStorage.getItem('isUser');
+    this.isUser = userType === 'true'; }
 }

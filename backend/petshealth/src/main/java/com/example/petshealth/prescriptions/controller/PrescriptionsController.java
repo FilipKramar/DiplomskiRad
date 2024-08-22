@@ -29,4 +29,9 @@ public class PrescriptionsController {
         return ResponseEntity.ok(prescriptionService.getPetsPrescription(id,prescriptionid));
     }
 
+    @GetMapping()
+    public ResponseEntity<List<Prescriptions>> listAllPrescriptions(){
+        return ResponseEntity.ok(prescriptionService.listAllPrescriptions());
+    }
+
 }

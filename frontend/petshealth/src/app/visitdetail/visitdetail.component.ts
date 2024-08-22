@@ -12,11 +12,15 @@ export class VisitdetailComponent implements OnInit {
   visit: any;
   prescriptions: any[] = [];
   therapies: any[] = [];
-  
+  isUser: boolean = false;
 
   constructor(private apiRequestService: ApirequestService) { }
 
   ngOnInit(): void {
+
+    const userType = sessionStorage.getItem('isUser');
+    this.isUser = userType === 'true';
+
     this.apiRequestService.getVisitDetails().subscribe(
       (data) => {
         this.visit = data.visit;

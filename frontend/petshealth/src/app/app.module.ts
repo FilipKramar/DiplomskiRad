@@ -37,6 +37,8 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { VisitComponent } from './visit/visit.component';
 import { VetloginComponent } from './vetlogin/vetlogin.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { VetappointmentsComponent } from './vetappointments/vetappointments.component';
+import { AppointmentdetailsComponent } from './appointmentdetails/appointmentdetails.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
     VisitComponent,
     VetloginComponent,
     AppointmentComponent,
+    VetappointmentsComponent,
+    AppointmentdetailsComponent,
   ],
   imports: [
     BrowserModule,

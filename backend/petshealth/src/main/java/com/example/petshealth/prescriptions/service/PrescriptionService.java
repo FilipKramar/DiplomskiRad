@@ -54,5 +54,9 @@ public class PrescriptionService {
                 .findFirst()
                 .orElse(null);
     }
+
+    public List<Prescriptions> listAllPrescriptions() {
+        return prescriptionRepository.findAll();
+    }
 }
 

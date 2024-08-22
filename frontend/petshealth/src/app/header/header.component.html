@@ -21,7 +21,7 @@
 
   <div class="name">PetsHealth</div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="navigateToSelectPet()">Back to Select Pet</button>
+    <button *ngIf="isUser" mat-menu-item (click)="navigateToSelectPet()">Back to Select Pet</button>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
   

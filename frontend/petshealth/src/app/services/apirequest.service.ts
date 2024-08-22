@@ -55,6 +55,12 @@ export class ApirequestService {
     return this.http.get<void>(url);
   }
 
+  getVetsAppointments() {
+    const vetid = sessionStorage.getItem('vetid');
+    const url = `${apiUrl.key}visit/vet/${vetid}`;
+    return this.http.get<void>(url);
+  }
+
   registerAPet(data: any) {
     const url = `${apiUrl.key}pets`;
     this.http.post<void>(url, data).subscribe(
@@ -94,6 +100,14 @@ export class ApirequestService {
     const url = `${apiUrl.key}vet`;
     return this.http.get<any>(url);
   }
+  getTherapies() {
+    const url = `${apiUrl.key}therapies`;
+    return this.http.get<any>(url);
+  }
+  getPrescriptions() {
+    const url = `${apiUrl.key}prescriptions`;
+    return this.http.get<any>(url);
+  }
   getVisitDetails() {
     const petId = sessionStorage.getItem('petId');
     const visitId = sessionStorage.getItem('visitId');
@@ -119,6 +133,21 @@ export class ApirequestService {
       () => {
         alert('Visit scheduled sucessfully');
         this.router.navigate(['/home/']);
+      },
+      (error) => {
+        alert('Cant create an appointment');
+      }
+    );
+  }
+
+  addAppointmentDetails(data: any) {
+    const petId = sessionStorage.getItem('petId');
+    const visitId = sessionStorage.getItem('visitId');
+    const url = `${apiUrl.key}visit/${petId}/${visitId}`;
+    this.http.patch<void>(url, data).subscribe(
+      () => {
+        alert('Visit updated  sucessfully');
+        
       },
       (error) => {
         alert('Cant create an appointment');

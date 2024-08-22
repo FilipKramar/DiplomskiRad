@@ -32,6 +32,7 @@ app-navbar {
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -47,4 +48,16 @@ app-navbar {
 
 mat-grid-tile {
   background: lightgoldenrodyellow;
+}
+
+.paw-print i {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  overflow: hidden;
+  font-size: 60vw;
+  color: lightgray;
+  opacity: 0.5;
+  z-index: 0;
 }

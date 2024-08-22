@@ -25,3 +25,16 @@ $background: white;
 mat-grid-tile {
   background: lightblue;
 }
+
+.paw-print i {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  font-size: 60vw;
+  color: lightgray;
+  opacity: 0.5;
+  z-index: -5;
+}
+

@@ -20,6 +20,12 @@
   </div>
 
   <div class="name">PetsHealth</div>
-  <div (click)="logout()" >Log out</div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="navigateToSelectPet()">Back to Select Pet</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+  
+  <button mat-button [matMenuTriggerFor]="menu"><h2>Menu</h2></button>
+  
 </mat-toolbar>
 

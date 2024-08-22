@@ -1,7 +1,5 @@
 <div class="grid-item item">
-  <div class="task">
-    <p>ALL PETS</p>
-  </div>
+  <h2 class="heading">Please select existing pet or register a new one</h2>
   <table mat-table [dataSource]="usersPet" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -28,4 +26,7 @@
   </table>
 </div>
 
-<a [routerLink]="['/home/dashboard/register']">Register your pet</a>
+<div class="register-container">
+  <a [routerLink]="['/home/dashboard/register']" class="register-link">Register your pet</a>
+</div>
+

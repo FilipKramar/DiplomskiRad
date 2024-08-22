@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { MatMenuModule } from '@angular/material/menu';
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';  // Add this line
+import { MatSelectModule } from '@angular/material/select';
 import { SelectpetComponent } from './selectpet/selectpet.component';
 import { RegisterpetComponent } from './registerpet/registerpet.component';
 import { TherapiesComponent } from './therapies/therapies.component';
@@ -78,6 +79,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
     FlexLayoutModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

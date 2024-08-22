@@ -1,13 +1,13 @@
 <div fxLayout="row" fxLayoutAlign="center">
     <mat-card>
       <mat-card-title fxLayoutAlign="center center">
-        <h4><span>Register a Pet</span></h4>
+        <h2><span>Register a Pet</span></h2>
       </mat-card-title>
-      <mat-card-content fxLayout="column" fxLayoutAlign="space-around center">
+      <mat-card-content fxLayout="column" fxLayoutAlign="space-between center">
         <form
           [formGroup]="createPetFormGroup"
           fxLayout="column"
-          fxLayoutAlign="space-between stretch"
+          fxLayoutAlign="center center"
           (ngSubmit)="collectFormData()"
         >
           <div
@@ -96,4 +96,9 @@
   
 
 
-<a [routerLink]="['/home/dashboard/']">Pet already registered?</a>
+
+<div class="login-container">
+
+  <a [routerLink]="['/home/dashboard/']"  class="login-link">Pet already registered?</a>
+
+</div>

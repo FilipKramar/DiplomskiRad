@@ -4,7 +4,11 @@
   margin-bottom: 20px;
   text-align: center;
   color: #3f51b5;
+}
 
+.grid-item {
+  position: relative;
+  z-index: 2;
 }
 
 .item {

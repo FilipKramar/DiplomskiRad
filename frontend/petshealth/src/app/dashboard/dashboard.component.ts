@@ -7,9 +7,6 @@ import { ApirequestService } from '../services/apirequest.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  tasks: any;
-  userstories: any;
-  alltasks: any;
   constructor() {}
 
   ngOnInit(): void {

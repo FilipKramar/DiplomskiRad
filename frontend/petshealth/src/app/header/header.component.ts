@@ -24,6 +24,10 @@ export class HeaderComponent {
     sessionStorage.removeItem('userid');
     sessionStorage.removeItem('username');
     this.router.navigate(['']);
+  }
+  navigateToSelectPet() {
+    
+    this.router.navigate(['/home/dashboard']);
 
   }
 }

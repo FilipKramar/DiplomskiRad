@@ -29,24 +29,28 @@ jobs:
     - name: Build frontend image
       if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
-        cd frontend/petshealth
-        docker buildx build --file Dockerfile -t petshealth-frontend:latest --output type=local,dest=../../frontend-image .
+        docker buildx build --file ./frontend/petshealth/Dockerfile -t petshealth-frontend:latest --output type=local,dest=./frontend-image .
 
     - name: Build backend image
       if: ${{ github.event.inputs.build_backend == 'true' }}
       run: |
-        cd backend/petshealth
-        docker buildx build --file Dockerfile -t petshealth-backend:latest --output type=local,dest=../../backend-image .
+        docker buildx build --file ./backend/petshealth/Dockerfile -t petshealth-backend:latest --output type=local,dest=./backend-image .
 
     - name: Save Frontend Docker image as tar file
       if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
-        docker save petshealth-frontend:latest -o frontend-image.tar
+        if [ -d ./frontend-image ]; then
+          docker save petshealth-frontend:latest -o frontend-image.tar
+        fi
+        ls -l frontend-image.tar
 
     - name: Save Backend Docker image as tar file
       if: ${{ github.event.inputs.build_backend == 'true' }}
       run: |
-        docker save petshealth-backend:latest -o backend-image.tar
+        if [ -d ./backend-image ]; then
+          docker save petshealth-backend:latest -o backend-image.tar
+        fi
+        ls -l backend-image.tar
 
     - name: Create zip file of Docker images
       run: |

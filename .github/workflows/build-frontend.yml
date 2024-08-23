@@ -23,7 +23,8 @@ jobs:
 
     - name: Build frontend image
       run: |
-        docker buildx build --file ./frontend/petshealth/Dockerfile -t petshealth-frontend:latest --output type=local,dest=./frontend-image .
+        cd frontend/petshealth
+        docker build -t petshealth-frontend:latest .
 
     - name: Save Docker image as tar file
       run: |

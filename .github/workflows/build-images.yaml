@@ -22,9 +22,11 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build frontend image
+      if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
         cd frontend/petshealth
-        docker buildx build --file ./frontend/petshealth/Dockerfile -t petshealth-frontend:latest --output type=local,dest=./frontend-image .
+        docker buildx build --file Dockerfile -t petshealth-frontend:latest --output type=local,dest=../frontend-image .
+
 
     - name: Save Docker image as tar file
       run: |

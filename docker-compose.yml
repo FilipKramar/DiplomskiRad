@@ -1,11 +1,12 @@
 version: '3.1'
 services:
-  anuglar:
-    build: ./frontend/petshealth
+  angular:
+    image: petshealth-frontend:latest
     ports:
       - "4200:80"
+  
   api:
-    build: ./backend/petshealth
+    image: petshealth-backend:latest
     ports:
       - "8080:8080"
     environment:
@@ -23,4 +24,3 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_USER=myuser
       - POSTGRES_DB=petshealth
-    

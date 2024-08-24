@@ -26,16 +26,22 @@ jobs:
         cd frontend/petshealth
         docker build -t petshealth-frontend:latest .
 
+    - name: Build frontend image
+      run: |
+        cd backend/petshealth
+        docker build -t petshealth-backend:latest .
+
     - name: Save Docker image as tar file
       run: |
-        docker save petshealth-frontend:latest -o frontend-image.tar
+        docker save petshealth-frontend:latest -o petshealth-frontend.tar
+        docker save petshealth-backend:latest -o petshealth-backend.tar
 
     - name: Create zip file of Docker image
       run: |
-        zip frontend-image.zip frontend-image.tar
+        zip petshealth-image.zip petshealth-frontend.tar petshealth-backend.tar
 
     - name: Upload zip file as artifact
       uses: actions/upload-artifact@v4  
       with:
-        name: frontend-docker-image
-        path: frontend-image.zip
+        name: petshealth-docker-image
+        path: petshealth-image.zip

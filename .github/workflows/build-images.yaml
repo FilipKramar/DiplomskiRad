@@ -38,17 +38,25 @@ jobs:
         cd backend/petshealth
         docker buildx build --file Dockerfile -t petshealth-backend:latest --output type=local,dest=../../backend-image .
 
+    - name: Verify Frontend Docker image
+      if: ${{ github.event.inputs.build_frontend == 'true' }}
+      run: |
+        docker images
+
     - name: Save Frontend Docker image as tar file
       if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
-          docker save petshealth-frontend:latest -o frontend-image.tar
+        docker save petshealth-frontend:latest -o frontend-image.tar
 
+    - name: Verify Backend Docker image
+      if: ${{ github.event.inputs.build_backend == 'true' }}
+      run: |
+        docker images
 
     - name: Save Backend Docker image as tar file
       if: ${{ github.event.inputs.build_backend == 'true' }}
       run: |
-          docker save petshealth-backend:latest -o backend-image.tar
- 
+        docker save petshealth-backend:latest -o backend-image.tar
 
     - name: Create zip file of Docker images
       run: |

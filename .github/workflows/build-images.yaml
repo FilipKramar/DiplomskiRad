@@ -8,40 +8,49 @@ on:
         required: true
         default: 'true'
         type: boolean
+      build_backend:
+        description: 'Build backend image'
+        required: true
+        default: 'true'
+        type: boolean
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.build_frontend == 'true' }}
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3  
+      uses: docker/setup-buildx-action@v3
 
     - name: Build frontend image
+      if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
         cd frontend/petshealth
         docker build -t petshealth-frontend:latest .
 
-    - name: Build frontend image
+    - name: Build backend image
+      if: ${{ github.event.inputs.build_backend == 'true' }}
       run: |
         cd backend/petshealth
         docker build -t petshealth-backend:latest .
 
-    - name: Save Docker image as tar file
+    - name: Save Docker images as tar files
       run: |
-        docker save petshealth-frontend:latest -o petshealth-frontend.tar
-        docker save petshealth-backend:latest -o petshealth-backend.tar
+        if [ "${{ github.event.inputs.build_frontend }}" = "true" ]; then
+          docker save petshealth-frontend:latest -o petshealth-frontend.tar
+        fi
+        if [ "${{ github.event.inputs.build_backend }}" = "true" ]; then
+          docker save petshealth-backend:latest -o petshealth-backend.tar
+        fi
 
-    - name: Create zip file of Docker image
+    - name: Create zip file of Docker images
       run: |
-        zip petshealth-image.zip petshealth-frontend.tar petshealth-backend.tar
+        zip -r petshealth-image.zip *.tar
 
     - name: Upload zip file as artifact
-      uses: actions/upload-artifact@v4  
+      uses: actions/upload-artifact@v4
       with:
         name: petshealth-docker-image
         path: petshealth-image.zip

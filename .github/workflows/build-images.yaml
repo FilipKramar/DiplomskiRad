@@ -8,62 +8,34 @@ on:
         required: true
         default: 'true'
         type: boolean
-      build_backend:
-        description: 'Build backend image'
-        required: true
-        default: 'true'
-        type: boolean
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.build_frontend == 'true' || github.event.inputs.build_backend == 'true' }}
+    if: ${{ github.event.inputs.build_frontend == 'true' }}
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3  
 
     - name: Build frontend image
-      if: ${{ github.event.inputs.build_frontend == 'true' }}
       run: |
         cd frontend/petshealth
-        docker buildx build -t petshealth-frontend:latest .
+        docker build -t petshealth-frontend:latest .
 
-    - name: Build backend image
-      if: ${{ github.event.inputs.build_backend == 'true' }}
-      run: |
-        cd backend/petshealth
-        docker buildx build -t petshealth-backend:latest .
-
-    - name: Verify Frontend Docker image
-      if: ${{ github.event.inputs.build_frontend == 'true' }}
-      run: |
-        docker images
-
-    - name: Save Frontend Docker image as tar file
-      if: ${{ github.event.inputs.build_frontend == 'true' }}
+    - name: Save Docker image as tar file
       run: |
         docker save petshealth-frontend:latest -o frontend-image.tar
 
-    - name: Verify Backend Docker image
-      if: ${{ github.event.inputs.build_backend == 'true' }}
+    - name: Create zip file of Docker image
       run: |
-        docker images
-
-    - name: Save Backend Docker image as tar file
-      if: ${{ github.event.inputs.build_backend == 'true' }}
-      run: |
-        docker save petshealth-backend:latest -o backend-image.tar
-
-    - name: Create zip file of Docker images
-      run: |
-        zip docker-images.zip frontend-image.tar backend-image.tar || true
+        zip frontend-image.zip frontend-image.tar
 
     - name: Upload zip file as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  
       with:
-        name: docker-images
-        path: docker-images.zip
+        name: frontend-docker-image
+        path: frontend-image.zip

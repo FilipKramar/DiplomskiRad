@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e
-
-# Check if unzip is installed, and install if not
 if ! command -v unzip &> /dev/null; then
   echo "unzip not found, installing..."
   sudo apt-get update && sudo apt-get install -y unzip
@@ -14,13 +11,13 @@ IMAGE_DIR="docker-images"
 
 unzip -q "$ARTIFACT_ZIP"
 unzip -q "$IMAGE_ZIP" -d "$IMAGE_DIR"
-
 for tar_file in "$IMAGE_DIR"/*.tar; do
   docker load -i "$tar_file"
 done
-
 rm -rf "$IMAGE_DIR" "$IMAGE_ZIP"
-
-echo "Docker images loaded and cleaned up."
-
 docker-compose up -d
+
+
+
+
+
